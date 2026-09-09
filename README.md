@@ -10,6 +10,23 @@ This repository provides self-contained infrastructure-as-code (IaC) to create:
 - **AWS CodeArtifact Domain**: Secure artifact repository domain encrypted with the KMS CMK.
 - **AWS CodeArtifact Repositories**: Polyglot package repositories (supporting PyPI, npm, Maven, etc.) configured via input variables (defaults to `dev`, `stg`, `prd`).
 
+## Repository Layout
+
+```text
+opentofu-codeartifact/
+├── Makefile
+├── README.md
+├── .gitignore
+└── tofu/
+    ├── main.tf
+    ├── variables.tf
+    ├── outputs.tf
+    ├── providers.tf
+    ├── versions.tf
+    ├── .terraform.lock.hcl
+    └── terraform.tfvars.example
+```
+
 ## Prerequisites
 
 - [OpenTofu](https://opentofu.org/) >= 1.12
@@ -22,10 +39,10 @@ This repository provides self-contained infrastructure-as-code (IaC) to create:
 Copy the example variable definitions file and adjust it to your environment:
 
 ```bash
-cp terraform.tfvars.example terraform.tfvars
+cp tofu/terraform.tfvars.example tofu/terraform.tfvars
 ```
 
-Edit `terraform.tfvars`:
+Edit `tofu/terraform.tfvars`:
 
 ```hcl
 aws_region   = "ap-northeast-1"
@@ -40,7 +57,7 @@ repositories = [
 
 ### 2. OpenTofu Commands
 
-Run operations using OpenTofu or Make:
+Run operations using OpenTofu or Make from the root directory:
 
 ```bash
 # Show available targets

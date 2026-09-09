@@ -1,4 +1,5 @@
 TOFU := tofu
+TOFU_DIR := tofu
 
 .DEFAULT_GOAL := help
 
@@ -8,36 +9,36 @@ help: ## Display this help message
 
 .PHONY: fmt
 fmt: ## Format OpenTofu files
-	@$(TOFU) fmt -recursive .
+	@$(TOFU) fmt -recursive $(TOFU_DIR)
 	@echo "Formatted OpenTofu files."
 
 .PHONY: fmt-check
 fmt-check: ## Check OpenTofu formatting
-	@$(TOFU) fmt -check -recursive .
+	@$(TOFU) fmt -check -recursive $(TOFU_DIR)
 
 .PHONY: init
 init: ## Initialize OpenTofu working directory
-	@$(TOFU) init
+	@$(TOFU) -chdir=$(TOFU_DIR) init
 
 .PHONY: validate
 validate: fmt-check ## Validate OpenTofu syntax and configuration
-	@$(TOFU) init -backend=false > /dev/null
-	@$(TOFU) validate
+	@$(TOFU) -chdir=$(TOFU_DIR) init -backend=false > /dev/null
+	@$(TOFU) -chdir=$(TOFU_DIR) validate
 	@echo "Validation successful."
 
 .PHONY: plan
 plan: init ## Generate and show an execution plan
-	@$(TOFU) plan
+	@$(TOFU) -chdir=$(TOFU_DIR) plan
 
 .PHONY: apply
 apply: init ## Build or change infrastructure
-	@$(TOFU) apply
+	@$(TOFU) -chdir=$(TOFU_DIR) apply
 
 .PHONY: destroy
 destroy: init ## Destroy OpenTofu-managed infrastructure
-	@$(TOFU) destroy
+	@$(TOFU) -chdir=$(TOFU_DIR) destroy
 
 .PHONY: clean
 clean: ## Remove local OpenTofu cache and state files
-	@rm -rf .terraform .terraform.lock.hcl
+	@rm -rf $(TOFU_DIR)/.terraform
 	@echo "Cleaned OpenTofu cache."
