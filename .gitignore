@@ -1,0 +1,20 @@
+# OpenTofu / Terraform runtime files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+
+# Crash logs
+crash.log
+crash.*.log
+
+# CLI configuration files
+.terraformrc
+terraform.rc
+
+# OS & Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
