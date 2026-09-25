@@ -1,4 +1,4 @@
-# opentofu-codeartifact
+# OpenTofu - AWS CodeArtifact
 
 OpenTofu configuration for provisioning an AWS CodeArtifact domain with KMS customer-managed key (CMK) encryption and configurable package repositories.
 
