@@ -105,3 +105,8 @@ make destroy
 | `repository_arns` | Map of repository names to their ARNs |
 | `repository_endpoints_pypi` | Map of repository names to their PyPI endpoints |
 | `repository_endpoints_npm` | Map of repository names to their npm endpoints |
+
+---
+
+This repository is published as a reference implementation.
+It is not actively maintained.
